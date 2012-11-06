@@ -1,11 +1,11 @@
-genstrings
+Localized
 =========================================
 
 This project has 2 components:
 
-1. Replace Apple's closed sourced genstrings with a Python replacement - `genstrings.py`
+1. `genstrings.py` - Replace Apple's closed sourced genstrings with a Python replacement
 
-2. Provide localization helper classes - `NSString-Localized.h/m`
+2. `NSString-Localized.h/m` - Provide iOS localization helper classes
 
 
 Python genstrings
@@ -37,7 +37,7 @@ NSString-Localized
 
 `NSString-Localized.h/m` is a category for localization.
 
-To use, import the class in your app's pch file eg `MyApp_Prefix.pch`.
+To use, add the 2 files to project, then import the class in your project pch file eg `MyApp_Prefix.pch`.
 
 	#import "NSString-Localized.h"
 
@@ -47,13 +47,13 @@ Then to have a localizable string in code,
 
 As per normal, the localized text comes from `Localizable.strings`.
 
-It provides the following values:
+It provides the following functions:
 
 - If you are like me, always using `nil` for comment, then you can leave the comment all out. 
 
 - Last I counted, it shorten `NSLocalizedString` by 8 characters.
 
-- It also read from another string table `Localizable2.strings`. This secondary file is useful if the main string table is used by another library. Or you could extend the code to read another string table.
+- It also read from another string table `Localizable2.strings`. This secondary file is useful if the main string table is used by another library. Or you could easily extend the code to read another string table.
 
 - Recursive replacement. This is best illustrated with an example.
 
