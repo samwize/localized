@@ -12,16 +12,15 @@
 # This script is heavily copied from: https://github.com/dunkelstern/Cocoa-Localisation-Helper
 
 import os, re, subprocess
+import fnmatch
 
 def fetch_files_recursive(directory, extension):
-    l = []
-    for file in os.listdir(directory):
-        if os.path.isdir(directory + '/' + file):
-            l[-1:] = fetch_files_recursive(directory + '/' + file, extension)
-        if os.path.isfile(directory + '/' + file):
-            if file[-len(extension):] == extension:
-                l.append(directory + '/' + file)
-    return l
+    matches = []
+    for root, dirnames, filenames in os.walk(directory):
+      for filename in fnmatch.filter(filenames, '*' + extension):
+          matches.append(os.path.join(root, filename))
+    return matches
+    
 
 # prepare regexes
 localizedStringComment = re.compile('NSLocalizedString\(@"([^"]*)",\s*@"([^"]*)"\s*\)', re.DOTALL)
